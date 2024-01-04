@@ -1,0 +1,39 @@
+# добавить четырех пользователей через loop
+# Зшифруем файл vault.yaml с помощью Ansible-vault: ansible-vault encrypt vault.yaml   от sudo
+# можно запускать плейбук с опцией ansible-playbook add_user.yaml --ask-vault-pass для ввода пароля
+---
+- name: loops adduser
+  hosts: nodes
+  become: true
+  vars_files:
+    - /home/ansible/vault.yaml
+    - /home/ansible/user.yaml
+  tasks:
+    - name: Show five first prime numbers
+      user:
+        name: "{{ user.name }}"
+        password: "{{ user.password }}"
+        comment: "Ansible-generated user"
+        state: present
+      loop: "{{ users }}"
+      loop_control:
+        loop_var: user
+        pause: 1    # Пауза на 5 секунд
+      # become: true   # текущее значение переменной 
+
+      
+      
+
+   
+      
+      
+
+
+
+# переопределить имя loop-переменной из item в user
+
+# назначить паузу в 5 сек между добавлениями пользователями
+
+# К каждому пользователю добавить коментарий " Ansible-generates user"
+
+# Учетные данные логин и пароль вынести во внешний файл, зашифровать через ansible-vault
