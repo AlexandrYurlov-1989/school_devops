@@ -1,0 +1,17 @@
+---
+- name: loops adduser
+  hosts: nodes
+  become: true
+  vars_files:
+    - /home/ansible/vault.yaml
+    - /home/ansible/user.yaml
+  tasks:
+    - name: Remove janedoe
+      user:
+        name: "{{ user.name }}"
+        password: "{{ user.password }}"
+        state: absent
+        remove: yes
+      loop: "{{ users }}"
+      loop_control:
+        loop_var: user
