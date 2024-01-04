@@ -18,7 +18,9 @@
       loop: "{{ users }}"
       loop_control:
         loop_var: user
-        pause: 1    # Пауза на 5 секунд
+        pause: 1  
+      no_log: true
+          # Пауза на 5 секунд
       # become: true   # текущее значение переменной 
 
       
