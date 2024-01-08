@@ -1,0 +1,14 @@
+
+server {
+    listen {{ nginx_port_ssl}} ssl;
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+    server_name {{ ansible_host }};
+    location / {
+            try_files $uri $uri/ =404;
+    }
+    ssl_certificate /etc/nginx/ssl/{{ inventory_hostname }}.crt;
+    ssl_certificate_key /etc/nginx/ssl/{{ inventory_hostname }}.key;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+}

@@ -1,0 +1,26 @@
+- name: Install OpenSSL package
+  yum:
+    name: openssl
+    state: present
+
+- name: Generate SSL certificate
+  command: >
+    openssl req -x509 -nodes -days {{ days_valid }} -newkey rsa:2048
+    -keyout {{ ssl_key_path }} -out {{ ssl_cert_path }}
+    -subj "/C={{ country_name }}/ST={{ state_name }}/L={{ locality_name }}/O={{ organization_name }}/CN={{ common_name }}"
+  args:
+    creates: "{{ ssl_cert_path }}"
+
+- name: Set permissions on SSL key file
+  file:
+    path: "{{ ssl_key_path }}"
+    owner: root
+    group: root
+    mode: '0400'
+
+- name: Set permissions on SSL cert file
+  file:
+    path: "{{ ssl_cert_path }}"
+    owner: root
+    group: root
+    mode: '0644'

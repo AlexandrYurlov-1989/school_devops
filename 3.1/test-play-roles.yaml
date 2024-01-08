@@ -1,0 +1,15 @@
+---
+- name: using roles
+  hosts: nodes
+  become: true
+  vars:
+    nginx_port_ssl: 443
+
+
+  roles:
+    - role: "sert-role"
+      tags: nginx
+    - role: "nginx-role"
+      tags: nginx
+    - role: "mariadb-role"
+      tags: mariadb

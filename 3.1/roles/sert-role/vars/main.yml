@@ -1,0 +1,9 @@
+---
+ssl_cert_path: "/etc/nginx/ssl/{{ inventory_hostname }}.crt"
+ssl_key_path: "/etc/nginx/ssl/{{ inventory_hostname }}.key"
+days_valid: 365
+country_name: "RU"
+state_name: "Yaroslavl"
+locality_name: "YaO"
+organization_name: "Tensor"
+common_name: "example.com"
