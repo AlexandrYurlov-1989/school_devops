@@ -1,0 +1,12 @@
+---
+- name: test filter
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    string1: '20568376'
+    
+  tasks:
+    - name: debug
+      debug:
+        msg: "{{ string1 | concat_strings }}"
