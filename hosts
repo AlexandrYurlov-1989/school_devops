@@ -1,0 +1,5 @@
+[nodes]
+# master ansible-host=master
+ansible ansible-host=ansible
+# worker4 ansible-host=worker4
+# worker3 ansible-host=worker3
